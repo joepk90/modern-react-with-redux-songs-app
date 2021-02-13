@@ -4,7 +4,13 @@ import SongList from './songList';
 
 const App = () => {
     return (
-        <div><SongList /></div>
+        <div className="ui container grid">
+            <div className="ui row">
+                <div className="column eight wide">
+                    <SongList />
+                </div>
+            </div>
+        </div>
     )
 }
 
