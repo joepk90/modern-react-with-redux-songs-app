@@ -4,6 +4,18 @@ import { selectSong } from '../actions/index';
 
 class SongList extends Component {
 
+    isSelected(song) {
+
+        if (this.props.selectedSong === null) return false;
+        if (!this.props.selectedSong.title) return false;
+
+        if (this.props.selectedSong.title === song.title) {
+            return true;
+        }
+
+        return false;
+    }
+
     renderList() {
 
         return this.props.songs.map(song => {
@@ -11,6 +23,7 @@ class SongList extends Component {
                 <div className="item" key={song.title}>
                     <div className="right floated content">
                         <button
+                            disabled={this.isSelected(song)}
                             className="ui button primary"
                             onClick={() => this.props.selectSong(song)}
                         >Select</button>
@@ -32,7 +45,10 @@ class SongList extends Component {
 }
 
 const mapStateToProps = state => {
-    return { songs: state.songs };
+    return {
+        songs: state.songs,
+        selectedSong: state.selectSong
+    };
 
 }
 
